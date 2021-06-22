@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Comments from '../Comments/Comments';
 
 const PostDetail = () => {
-    const {id} = useParams();
+    const { id } = useParams();
     const [post, setPost] = useState([]);
     const [comments, setComments] = useState([]);
     useEffect(() => {
@@ -11,13 +11,13 @@ const PostDetail = () => {
         fetch(url)
             .then(response => response.json())
             .then(data => setPost(data))
-    },[])
+    }, [id]);
     useEffect(() => {
         const url = `http://jsonplaceholder.typicode.com/comments?postId=${id}`;
         fetch(url)
             .then(response => response.json())
             .then(data => setComments(data))
-    }, [])
+    }, [id]);
 
     return (
         <div>
